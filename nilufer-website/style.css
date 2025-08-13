@@ -1,0 +1,615 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Body & General Text */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  margin-right: 280px; /* Space for CV panel */
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #ddd;
+}
+
+body.dark-mode a {
+  color: #80b3ff;
+}
+
+/* Links */
+a {
+  color: #007acc;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #005999;
+  text-decoration: underline;
+}
+
+/* Navbar */
+nav {
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0 0 8px 8px;
+  transition: background-color 0.3s ease;
+  width: 100vw; /* Full viewport width */
+  max-width: none;
+}
+
+body.dark-mode nav {
+  background-color: #222;
+  box-shadow: none;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #007acc;
+  user-select: none;
+  cursor: default;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links li a {
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  background-color: #007acc;
+  color: white;
+}
+
+body.dark-mode .nav-links li a {
+  color: #ddd;
+}
+
+body.dark-mode .nav-links li a:hover {
+  background-color: #5599ff;
+  color: white;
+}
+
+/* Burger Menu (Mobile) */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: #007acc;
+  border-radius: 2px;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .burger div {
+  background-color: #ddd;
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    right: -100%;
+    background-color: white;
+    height: calc(100vh - 60px);
+    width: 240px;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    border-radius: 0 0 0 8px;
+    z-index: 1001;
+  }
+
+  body.dark-mode .nav-links {
+    background-color: #222;
+  }
+
+  .nav-links.show {
+    right: 0;
+  }
+
+  .nav-links li {
+    margin-bottom: 1.5rem;
+  }
+
+  .nav-links li a {
+    font-size: 1.2rem;
+  }
+}
+
+/* Sections */
+.section {
+  width: 100vw; /* Full viewport width */
+  max-width: none; /* Remove max-width constraint */
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background-color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  scroll-margin-top: 80px; /* Offset for sticky navbar */
+}
+
+body.dark-mode .section {
+  background-color: #1f1f1f;
+  color: #ddd;
+}
+
+.section h2 {
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.5rem); /* Prominent heading */
+  margin-bottom: 1.5rem;
+  color: #007acc;
+  border-bottom: 3px solid #007acc;
+  padding-bottom: 8px;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+/* Assignments Section */
+#assignments {
+  padding-top: 1.5rem; /* Ensure heading is at top */
+}
+
+#assignments ul {
+  list-style: none;
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  color: #444;
+}
+
+#assignments ul li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+#assignments ul li::before {
+  content: '•';
+  color: #007acc;
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+}
+
+body.dark-mode #assignments ul {
+  color: #ccc;
+}
+
+/* Home Section */
+#home {
+  position: relative;
+  padding: 0; /* Remove padding for full-width image */
+  background-color: #f0f4f8;
+  text-align: center;
+  overflow: hidden;
+}
+
+.welcome-container {
+  position: relative;
+  width: 100%;
+  height: clamp(400px, 70vw, 600px); /* Larger image */
+}
+
+.welcome-container h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.welcome-container .big-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* About Section */
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+.profile-photo {
+  width: clamp(120px, 15vw, 140px);
+  height: clamp(120px, 15vw, 140px);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.profile-photo:hover {
+  transform: scale(1.05);
+}
+
+.about-text {
+  flex: 1;
+  min-width: 250px;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  line-height: 1.6;
+  color: #444;
+}
+
+body.dark-mode .about-text {
+  color: #ccc;
+}
+
+/* CV Panel */
+.cv-fixed-panel {
+  position: fixed;
+  top: 100px;
+  right: -280px;
+  width: 280px;
+  height: calc(100vh - 120px); /* Fit within viewport, accounting for navbar */
+  background: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px 0 0 8px;
+  transition: right 0.3s ease;
+  font-family: Arial, sans-serif;
+  color: #333;
+  z-index: 10000;
+}
+
+.cv-fixed-panel.open {
+  right: 0;
+}
+
+.cv-handle {
+  position: absolute;
+  left: -44px;
+  top: 20px;
+  width: 44px;
+  height: 88px;
+  background: #007acc;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  border-radius: 8px 0 0 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.cv-handle:hover {
+  background-color: #005999;
+}
+
+.cv-content {
+  padding: 20px;
+  height: 100%;
+  max-height: 100%; /* Restrict to panel height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cv-fixed-panel.open .cv-content {
+  opacity: 1;
+}
+
+/* Custom Scrollbar for CV Panel */
+.cv-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cv-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.cv-content::-webkit-scrollbar-thumb {
+  background: #007acc;
+  border-radius: 4px;
+}
+
+.cv-content::-webkit-scrollbar-thumb:hover {
+  background: #005999;
+}
+
+body.dark-mode .cv-content::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+body.dark-mode .cv-content::-webkit-scrollbar-thumb {
+  background: #5599ff;
+}
+
+body.dark-mode .cv-content::-webkit-scrollbar-thumb:hover {
+  background: #3377cc;
+}
+
+.cv-content ul {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.cv-content ul li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center; /* Align logo and text vertically */
+  padding-left: 0; /* Remove left padding for skills */
+}
+
+.cv-content ul li:not(:has(.skill-logo)) {
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.cv-content ul li:not(:has(.skill-logo))::before {
+  content: '•';
+  color: #007acc;
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+}
+
+.skill-logo {
+  width: 20px; /* Smaller size */
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px; /* Tighter spacing */
+}
+
+body.dark-mode .cv-content ul {
+  color: #ccc;
+}
+
+/* Scroll to Top Button */
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: #007acc;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 12px 15px;
+  box-shadow: 0 4px 10px rgba(0, 122, 204, 0.4);
+  display: none;
+  transition: background-color 0.3s ease;
+  z-index: 10000;
+}
+
+#scrollToTopBtn:hover {
+  background-color: #005999;
+}
+
+/* Contact Form */
+#contact-form input,
+#contact-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+  background-color: #fff;
+  color: #222;
+}
+
+body.dark-mode #contact-form input,
+body.dark-mode #contact-form textarea {
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+  color: #eee;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  outline: none;
+  border-color: #007acc;
+  box-shadow: 0 0 8px rgba(0, 122, 204, 0.5);
+}
+
+#contact-form button {
+  margin-top: 12px;
+  padding: 14px 25px;
+  background-color: #007acc;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#contact-form button:hover {
+  background-color: #005999;
+}
+
+body.dark-mode #contact-form button {
+  background-color: #5599ff;
+}
+
+body.dark-mode #contact-form button:hover {
+  background-color: #3377cc;
+}
+
+/* General Image Styling */
+img:not(.skill-logo) {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Fade In Animation */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn ease-in 1s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  body {
+    margin-right: 0; /* Remove CV panel margin on mobile */
+  }
+
+  .section {
+    padding: 1.5rem 1rem;
+  }
+
+  .welcome-container {
+    height: clamp(300px, 60vw, 450px);
+  }
+
+  .welcome-container h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+    margin: 20px auto;
+    gap: 15px;
+  }
+
+  .profile-photo {
+    margin: 10px auto 0;
+  }
+
+  .about-text {
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  }
+
+  #assignments ul {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+  }
+
+  .cv-fixed-panel {
+    width: 100%;
+    right: -100%;
+    top: 60px;
+    height: calc(100vh - 80px); /* Adjust for navbar */
+    border-radius: 0;
+  }
+
+  .cv-fixed-panel.open {
+    right: 0;
+  }
+
+  .cv-handle {
+    left: -40px;
+    width: 40px;
+    height: 80px;
+    font-size: 24px;
+  }
+
+  nav {
+    padding: 1rem;
+  }
+
+  .skill-logo {
+    width: 18px; /* Smaller for tablet */
+    height: 18px;
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-container {
+    height: clamp(250px, 50vw, 350px);
+  }
+
+  .welcome-container h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+
+  .profile-photo {
+    width: clamp(100px, 12vw, 120px);
+    height: clamp(100px, 12vw, 120px);
+  }
+
+  .about-text {
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+  }
+
+  .section h2 {
+    font-size: clamp(1.6rem, 4vw, 2rem);
+  }
+
+  #assignments ul {
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+  }
+
+  .skill-logo {
+    width: 16px; /* Smaller for mobile */
+    height: 16px;
+    margin-right: 4px;
+  }
+}
